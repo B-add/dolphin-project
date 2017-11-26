@@ -20,17 +20,9 @@ from dataaccess.ratios import get_ratios, compute_ratios
 # print(get_portfolio(221))
 
 # print(get_portfolio())
-from funcs import get_covar
+from funcs import get_covar, get_id_efficiency_volatility_tuple
 
-print(get_covar(416, 441))
-print(get_covar(540, 441))
-print(get_covar(370, 441))
-print(get_covar(393, 441))
-
-# id_eff_vol_2012_2017 = [(int(id),
-#                  float(ratio["21"]["value"].replace(',', '.')),
-#                  float(ratio["18"]["value"].replace(',', '.'))) for id, ratio in json.loads(compute_ratios(ratio_ids=[21, 18], asset_ids=asset_ids, start_date='2012-01-01', end_date='2017-06-01')).items()]
-
+print(get_id_efficiency_volatility_tuple())
 
 # print(id_eff_vol)
 # print(len(asset_ids))

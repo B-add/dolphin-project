@@ -17,6 +17,12 @@ def get_best_sharpes_ids():
     return [item[0] for item in sharpes]
 
 
+def get_id_efficiency_volatility_tuple():
+    return [(int(id),
+             float(ratio["21"]["value"].replace(',', '.')),
+             float(ratio["18"]["value"].replace(',', '.'))) for id, ratio in json.loads(compute_ratios(ratio_ids=[21, 18], asset_ids=get_best_sharpes_ids(), start_date='2012-01-01', end_date='2017-06-01')).items()]
+
+
 def get_covar(id_asset_1, id_asset_2):
     tmp_quotes_1 = [(quote["close"], quote["date"]) for quote in get_asset_quotes(id_asset_1, start_date='2012-01-01', end_date='2017-06-01')]
     tmp_quotes_2 = [(quote["close"], quote["date"]) for quote in get_asset_quotes(id_asset_2, start_date='2012-01-01', end_date='2017-06-01') if quote["date"] in [item[1] for item in tmp_quotes_1]]
