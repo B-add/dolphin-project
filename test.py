@@ -2,7 +2,7 @@ import json
 from operator import itemgetter
 
 from dataaccess.assets import get_assets, get_asset, get_asset_attribute, \
-    get_tools
+    get_tools, get_asset_quotes
 from dataaccess.portfolios import get_portfolio, get_our_portfolio
 
 from dataaccess.ratios import get_ratios, compute_ratios
@@ -20,7 +20,9 @@ from dataaccess.ratios import get_ratios, compute_ratios
 # print(get_portfolio(221))
 
 # print(get_portfolio())
+from funcs import get_covar
 
+print(get_covar(443))
 
 # id_eff_vol_2012_2017 = [(int(id),
 #                  float(ratio["21"]["value"].replace(',', '.')),

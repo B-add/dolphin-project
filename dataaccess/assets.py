@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 URL = 'https://dolphin.jump-technology.com:3389/api/v1/'
@@ -53,6 +55,15 @@ def get_asset_attribute(id, attribute):
                        auth=AUTH,
                        verify=False)
     return res.content.decode('utf-8')
+
+
+def get_asset_quotes(id, start_date, end_date):
+    payload = {'start_date': start_date, 'end_date': end_date}
+    res = requests.get(URL + 'asset/' + str(id) + '/quote',
+                       params=payload,
+                       auth=AUTH,
+                       verify=False)
+    return json.loads(res.content.decode('utf-8'))
 
 
 def columns_to_str(columns):
