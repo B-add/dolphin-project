@@ -2,7 +2,7 @@ import numpy as np
 from cvxopt import matrix, solvers
 
 def approx_weight(cov, R, q, l=0.01, h=0.1):
-    Q_ = (cov + 2 - 2 * np.eye(3)) / 2 + (cov * np.eye(3)) / 2
+    Q_ = (cov + 2 - 2 * np.eye(R.shape[0])) / 2 + (cov * np.eye(R.shape[0])) / 2
     Q = matrix(Q_)
 
     p = matrix(-q * R)
