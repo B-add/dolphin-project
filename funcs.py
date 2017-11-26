@@ -30,3 +30,18 @@ def get_covar(id_asset_1, id_asset_2):
     quotes_1 = np.array([item[0] for item in tmp_quotes_1])
     quotes_2 = np.array([item[0] for item in tmp_quotes_2])
     return np.sum((quotes_1 - np.mean(quotes_1)) * (quotes_2 - np.mean(quotes_2))) / quotes_1.shape[0]
+
+def get_covar_mat():
+   assets_list = get_best_sharpes_ids()
+
+   out = np.ones((len(asset_ids), len(asset_ids)), dtype=float)
+
+   for i in range(len(asset_ids)):
+       for j in range(i, len(asset_ids)):
+           if i == j:
+               out[i, j] = 1.
+           else:
+               out[i, j] = get_covar_mat(asset_ids[i], asset_ids[j])
+               out[j, i] = out[i, j]
+
+    return out
