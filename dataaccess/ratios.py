@@ -15,7 +15,7 @@ def get_ratios():
     res = requests.get(URL + 'ratio',
                        auth=AUTH,
                        verify=False)
-    return res.content
+    return res.content.decode('utf-8')
 
 
 def compute_ratios(ratio_ids, asset_ids, benchmark=None, start_date=None, end_date=None):
@@ -40,4 +40,4 @@ def compute_ratios(ratio_ids, asset_ids, benchmark=None, start_date=None, end_da
                                 'end_date': end_date,
                                 'frequency': None
                         }))
-    return res.content
+    return res.content.decode('utf-8')
