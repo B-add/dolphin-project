@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 URL = 'https://dolphin.jump-technology.com:3389/api/v1/'
@@ -18,7 +20,7 @@ def get_assets(date=None, full_response=False, columns=list()):
                        params=payload,
                        auth=AUTH,
                        verify=False)
-    return res.content
+    return res.content.decode('utf-8')
 
 
 def get_asset(id, date=None, full_response=True, columns=list()):
@@ -38,7 +40,7 @@ def get_asset(id, date=None, full_response=True, columns=list()):
                        params=payload,
                        auth=AUTH,
                        verify=False)
-    return res.content
+    return res.content.decode('utf-8')
 
 
 def get_asset_attribute(id, attribute):
@@ -52,7 +54,16 @@ def get_asset_attribute(id, attribute):
     res = requests.get(URL + 'asset/' + str(id) + '/attribute/' + attribute,
                        auth=AUTH,
                        verify=False)
-    return res.content
+    return res.content.decode('utf-8')
+
+
+def get_asset_quotes(id, start_date, end_date):
+    payload = {'start_date': start_date, 'end_date': end_date}
+    res = requests.get(URL + 'asset/' + str(id) + '/quote',
+                       params=payload,
+                       auth=AUTH,
+                       verify=False)
+    return json.loads(res.content.decode('utf-8'))
 
 
 def columns_to_str(columns):
@@ -62,3 +73,10 @@ def columns_to_str(columns):
     if columns_str:
         columns_str = '?' + columns_str[1:]
     return columns_str
+
+
+def get_tools():
+    res = requests.get(URL + 'asset?columns=ASSET_DATABASE_ID&columns=CURRENCY&columns=LABEL&columns=TYPE&columns=LAST_CLOSE_VALUE_IN_CURR&date=2012-01-01&CURRENCY=EUR',
+                       auth=AUTH,
+                       verify=False)
+    return res.content.decode('utf-8')
