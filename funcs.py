@@ -18,6 +18,9 @@ def get_best_sharpes_ids():
 
 
 def get_covar(id_asset_1, id_asset_2):
-    quotes_1 = np.array([quote["close"] for quote in get_asset_quotes(id_asset_1, start_date='2012-01-01', end_date='2017-06-01')])
-    quotes_2 = np.array([quote["close"] for quote in get_asset_quotes(id_asset_2, start_date='2012-01-01', end_date='2017-06-01')])
+    tmp_quotes_1 = [(quote["close"], quote["date"]) for quote in get_asset_quotes(id_asset_1, start_date='2012-01-01', end_date='2017-06-01')]
+    tmp_quotes_2 = [(quote["close"], quote["date"]) for quote in get_asset_quotes(id_asset_2, start_date='2012-01-01', end_date='2017-06-01') if quote["date"] in [item[1] for item in tmp_quotes_1]]
+    tmp_quotes_1 = [quote for quote in tmp_quotes_1 if quote[1] in [item[1] for item in tmp_quotes_2]]
+    quotes_1 = np.array([item[0] for item in tmp_quotes_1])
+    quotes_2 = np.array([item[0] for item in tmp_quotes_2])
     return np.sum((quotes_1 - np.mean(quotes_1)) * (quotes_2 - np.mean(quotes_2))) / quotes_1.shape[0]

@@ -22,7 +22,10 @@ from dataaccess.ratios import get_ratios, compute_ratios
 # print(get_portfolio())
 from funcs import get_covar
 
-print(get_covar(443))
+print(get_covar(416, 441))
+print(get_covar(540, 441))
+print(get_covar(370, 441))
+print(get_covar(393, 441))
 
 # id_eff_vol_2012_2017 = [(int(id),
 #                  float(ratio["21"]["value"].replace(',', '.')),
