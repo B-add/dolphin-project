@@ -12,9 +12,6 @@ def approx_weight(cov, R, q, M, l=0.01, h=0.1):
 
     h = matrix([-l] * cov.shape[0] + [h] * cov.shape[0])
 
-    print(G)
-    print(h)
-
     A = matrix(np.ones(cov.shape[0]), (1, cov.shape[0]), 'd')
 
     b = matrix(1.0)
