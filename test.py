@@ -3,6 +3,9 @@ from operator import itemgetter
 
 from dataaccess.assets import get_assets, get_asset, get_asset_attribute, \
     get_tools, get_asset_quotes
+
+from funcs import get_best_sharpes_ids, get_covar_mat, optimize_assets
+
 from dataaccess.portfolios import get_portfolio, get_our_portfolio
 
 from dataaccess.ratios import get_ratios, compute_ratios
@@ -22,9 +25,9 @@ from dataaccess.ratios import get_ratios, compute_ratios
 # print(get_portfolio())
 from funcs import get_covar, get_id_efficiency_volatility_tuple
 
-print(get_id_efficiency_volatility_tuple())
+# print(get_id_efficiency_volatility_tuple(get_best_sharpes_ids()))
 
 # print(id_eff_vol)
 # print(len(asset_ids))
 
-
+print(optimize_assets(2, 0))
