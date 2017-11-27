@@ -23,7 +23,7 @@ from dataaccess.ratios import get_ratios, compute_ratios
 # print(get_portfolio(221))
 
 # print(get_portfolio())
-from funcs import get_covar, get_id_efficiency_volatility_tuple
+from funcs import get_id_efficiency_volatility_tuple
 
 # print(get_id_efficiency_volatility_tuple(get_best_sharpes_ids()))
 
