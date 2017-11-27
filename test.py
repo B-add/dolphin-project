@@ -30,4 +30,4 @@ from funcs import get_covar, get_id_efficiency_volatility_tuple
 # print(id_eff_vol)
 # print(len(asset_ids))
 
-print(optimize_assets(2, 0))
+print(optimize_assets(20, 100))
