@@ -2,18 +2,20 @@ import json
 
 import requests
 
+from dataaccess.assets import get_asset
+
 URL = 'https://dolphin.jump-technology.com:3389/api/v1/'
 AUTH = ('epita_user_1', 'dolphin20412')
 
 
-def get_portfolio():
-    res = requests.get(URL + 'portfolio/564/dyn_amount_compo',
+def get_portfolio(id=564):
+    res = requests.get(URL + 'portfolio/' + str(id) + '/dyn_amount_compo',
                        auth=AUTH,
                        verify=False)
-    return res.content.decode('utf-8')
+    return json.loads(res.content.decode('utf-8'))
 
 
-def set_portfolio(id):
+def set_portfolio(id=564):
     res = requests.get(URL + 'portfolio/' + str(id) + '/dyn_amount_compo',
                        auth=AUTH,
                        verify=False,
@@ -33,3 +35,19 @@ def get_our_portfolio():
                        auth=AUTH,
                        verify=False)
     return res.content.decode('utf-8')
+
+
+def set_test_portfolio(ids, weights):
+    assets = []
+    money = 10000000
+    for i, id in enumerate(ids):
+        val = float(json.loads(get_asset(id=id, full_response=False, columns=["LAST_CLOSE_VALUE"],
+                  date="2011-12-31"))["LAST_CLOSE_VALUE"]["value"].split()[0].replace(',', '.'))
+        tmp = money * weights[i]
+        q = tmp / val
+        assets.append({'asset': {'asset': id, 'quantity': int(q)}})
+    result = {'currency': {'code': 'EUR'},
+              'label': 'PORTFOLIO_USER1',
+              'type': 'front',
+              'values': {'2012-01-01':  assets}}
+    print(result)
