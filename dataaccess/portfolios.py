@@ -16,19 +16,19 @@ def get_portfolio(id=564):
     return json.loads(res.content.decode('utf-8'))
 
 
-def set_portfolio(id=564):
-    res = requests.get(URL + 'portfolio/' + str(id) + '/dyn_amount_compo',
-                       auth=AUTH,
-                       verify=False,
-                       data=json.dumps({
-                           'ratio': ratio_ids,
-                           'asset': asset_ids,
-                           'benchmark': benchmark,
-                           'start_date': start_date,
-                           'end_date': end_date,
-                           'frequency': None
-                        }))
-    return res.content
+# def set_portfolio(id=564):
+#     res = requests.get(URL + 'portfolio/' + str(id) + '/dyn_amount_compo',
+#                        auth=AUTH,
+#                        verify=False,
+#                        data=json.dumps({
+#                            'ratio': ratio_ids,
+#                            'asset': asset_ids,
+#                            'benchmark': benchmark,
+#                            'start_date': start_date,
+#                            'end_date': end_date,
+#                            'frequency': None
+#                         }))
+#     return res.content
 
 
 def get_our_portfolio():
@@ -42,8 +42,6 @@ def set_test_portfolio():
     ids_weights = (optimize_assets(20, 100))
     ids = [item[0] for item in ids_weights]
     weights = [item[1] for item in ids_weights]
-    print(ids)
-    print(weights)
     assets = []
     money = 10000000
     for i, id in enumerate(ids):
@@ -56,4 +54,8 @@ def set_test_portfolio():
               'label': 'PORTFOLIO_USER1',
               'type': 'front',
               'values': {'2012-01-01':  assets}}
-    print(result)
+    res = requests.put(URL + 'portfolio/564/dyn_amount_compo',
+                       auth=AUTH,
+                       verify=False,
+                       data=json.dumps(result))
+    print(res.content)
