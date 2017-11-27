@@ -24,7 +24,9 @@ print(get_asset(id=443, full_response=False, columns=["LAST_CLOSE_VALUE"], date=
 # print(get_portfolio(221))
 
 print(get_portfolio())
-from funcs import get_covar, get_id_efficiency_volatility_tuple
+
+# print(get_portfolio())
+from funcs import get_id_efficiency_volatility_tuple
 
 # print(get_id_efficiency_volatility_tuple(get_best_sharpes_ids()))
 
@@ -35,3 +37,4 @@ from funcs import get_covar, get_id_efficiency_volatility_tuple
 
 set_test_portfolio([530, 446, 442, 389, 440, 505, 447, 419, 384, 466, 509, 478, 540, 370, 471, 393, 416, 441, 460, 443],
                    [0.530, 0.46, 0.442, 0.389, 0.440, 0.505, .447, .419, .384, .466, .509, .478, .540, .370, .471, .393, .416, .441, .460, .443])
+print(optimize_assets(20, 100))
