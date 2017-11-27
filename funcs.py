@@ -22,7 +22,7 @@ def get_best_sharpes_ids(top=20):
 def get_id_efficiency_volatility_tuple(assets_list):
     return [(int(id),
              float(ratio["21"]["value"].replace(',', '.')),
-             float(ratio["18"]["value"].replace(',', '.'))) for id, ratio in json.loads(compute_ratios(ratio_ids=[21, 18], asset_ids=assets_list, start_date='2012-01-01', end_date='2017-06-01')).items()]
+             float(ratio["18"]["value"].replace(',', '.'))) for id, ratio in json.loads(compute_ratios(ratio_ids=[21, 18], asset_ids=assets_list, start_date='2012-01-01', end_date='2017-06-30')).items()]
 
 
 def get_covar_mat(assets_list, e_v_assets_list):
@@ -30,7 +30,7 @@ def get_covar_mat(assets_list, e_v_assets_list):
     min_ = 9999999999999
 
     for i in assets_list:
-        out.append([quote["return"] for quote in get_asset_quotes(i, start_date='2012-01-01', end_date='2017-06-01')])
+        out.append([quote["return"] for quote in get_asset_quotes(i, start_date='2012-01-01', end_date='2017-06-30')])
         if min_ > len(out[-1]):
             min_ = len(out[-1])
 
