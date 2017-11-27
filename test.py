@@ -11,7 +11,7 @@ from dataaccess.portfolios import get_portfolio, get_our_portfolio, \
 
 from dataaccess.ratios import get_ratios, compute_ratios
 
-print(get_asset(id=443, full_response=False, columns=["LAST_CLOSE_VALUE"], date="2011-12-31"))
+# print(get_asset(id=443, full_response=False, columns=["LAST_CLOSE_VALUE"], date="2011-12-31"))
 
 # print(get_asset(id=221, full_response=False, columns=["LABEL", "ASSET_DATABASE_ID"]))
 # #
@@ -23,7 +23,7 @@ print(get_asset(id=443, full_response=False, columns=["LAST_CLOSE_VALUE"], date=
 #
 # print(get_portfolio(221))
 
-print(get_portfolio())
+# print(get_portfolio())
 
 # print(get_portfolio())
 from funcs import get_id_efficiency_volatility_tuple
@@ -35,6 +35,4 @@ from funcs import get_id_efficiency_volatility_tuple
 
 # print(optimize_assets(2, 0))
 
-set_test_portfolio([530, 446, 442, 389, 440, 505, 447, 419, 384, 466, 509, 478, 540, 370, 471, 393, 416, 441, 460, 443],
-                   [0.530, 0.46, 0.442, 0.389, 0.440, 0.505, .447, .419, .384, .466, .509, .478, .540, .370, .471, .393, .416, .441, .460, .443])
-print(optimize_assets(20, 100))
+set_test_portfolio()

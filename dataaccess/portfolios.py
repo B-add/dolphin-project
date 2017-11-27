@@ -3,6 +3,7 @@ import json
 import requests
 
 from dataaccess.assets import get_asset
+from funcs import optimize_assets
 
 URL = 'https://dolphin.jump-technology.com:3389/api/v1/'
 AUTH = ('epita_user_1', 'dolphin20412')
@@ -37,7 +38,12 @@ def get_our_portfolio():
     return res.content.decode('utf-8')
 
 
-def set_test_portfolio(ids, weights):
+def set_test_portfolio():
+    ids_weights = (optimize_assets(20, 100))
+    ids = [item[0] for item in ids_weights]
+    weights = [item[1] for item in ids_weights]
+    print(ids)
+    print(weights)
     assets = []
     money = 10000000
     for i, id in enumerate(ids):
